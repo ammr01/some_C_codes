@@ -1,10 +1,10 @@
 /*
 *
-*	Author : amr
+*   Author : amr
 *                
-*	OS : Debian 12 x86_64
+*   OS : Debian 12 x86_64
 *
-*	Date : 23-Aug-2024
+*   Date : 23-Aug-2024
 *
 *   Project Name : ferr
 * 
@@ -25,9 +25,15 @@
 #define RETURN          1
 #define NOTHING         2
 #define NOLINE          0
-#define SUCESS          0
+#define SUCCESS         0
 
+#define NOTE(message,...) ferr(NOLINE,NOTE_MESSAGE,NOTHING,SUCCESS,message,##__VA_ARGS__);  
+#define WARN(message,...) ferr(NOLINE,WARNING_MESSAGE,NOTHING,SUCCESS,message,##__VA_ARGS__);  
+#define ERR(line,code,message,...) ferr(line,ERROR_MESSAGE,EXIT,code,message,##__VA_ARGS__);  
+#define ERROR(line,code,message,...) ferr(line,ERROR_MESSAGE,EXIT,code,message,##__VA_ARGS__);  
 
+    
+int status;
 int error_flag=0;
 int ferr(int line, int type, int isexit, int exitcode,char* message, ...){
     // ferr is a function to manage error messages 
